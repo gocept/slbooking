@@ -1,0 +1,25 @@
+	{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Raum buchen{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form action="/process" method="post">
+		{% for room_avb in room_avb %}	
+	  		<input type="radio" name="room_to_be_booked"
+	  			   value= "{{ room_avb['name'] }}"> {{ room_avb['name'] }}
+	  	{% endfor %}
+	  	<br/><br/>
+		<input type="hidden" id="checkin" name="checkin"
+			   value="{{ db_checkin }}">
+		<input type="hidden" id="checkout" name="checkout"
+			   value="{{ db_checkout }}">
+		<input type="submit" value="Raum verbindlich buchen">
+		<p><br/><br/><br/>
+			<a href="{{ url_for('booking.date') }}">Zurück zu Zeitraum wählen</a>
+		</p>
+  	</form>
+{% endblock %}
+
+<!-- if keine Räume im gewünschten Zeitraum vorhanden, gib Warnung - funktioniert nicht -->

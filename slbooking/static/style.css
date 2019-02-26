@@ -1,0 +1,61 @@
+html { 
+	font-family: sans-serif;
+	background: #eee;
+}
+
+body {
+	max-width: 100vw;
+	margin: 3rem 10rem !important;
+	background: #eee;
+}
+
+h1, h2, h3 {
+	font-family: serif;
+	color: #377ba8;
+}
+
+a {
+	color: #377ba8;
+}
+
+nav {
+	background: lightgray;
+	padding: 1.5rem 1.5rem;
+}
+
+header  {
+	padding: 1.5rem 1.5rem;
+}
+
+nav ul  {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	margin-bottom: 2rem;
+}
+
+ul {
+	margin-bottom: 2rem;
+}
+
+li a {
+	float: right;
+	margin: 0 .5rem;
+}
+
+.content {
+	padding: 1.5rem 1.5rem;
+}
+
+form {
+	padding: 3rem 10rem 2rem 3rem;
+	background: #eee;
+}
+
+.input-group {
+	min-width: 300px !important;
+	width: 40% !important;
+}
+
+input.danger { color: #cc2f2e; }
+input[type=submit] { align-self: start; min-width: 10em; }

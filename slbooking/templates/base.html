@@ -1,0 +1,67 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Raumbuchung</title>
+<script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='all.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='tempusdominus-bootstrap.css') }}">
+ 
+
+<nav>
+  <h1>
+    <a href="{{ url_for('index') }}"><i class="fas fa-bullseye"></i>
+    Raumbuchung</a>
+  </h1>
+  <ul>
+    {% if g.user %}
+      <li><span>Eingeloggt als Nutzer: {{ g.user['username'] }}</span>
+        <li>
+          <a href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        <li>
+          <a href="{{ url_for('booking.user_rooms') }}">Gebuchte Räume</a>
+        </li>
+        <li>
+          <a href="{{ url_for('booking.date') }}">Raum buchen</a>
+        </li>
+    {% elif g.admin %}
+      <li><span>Eingeloggt als Admin: {{ g.admin['adminname'] }}</span>
+        <li>
+          <a href="{{ url_for('admin.admin_logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        <li>
+          <a href="{{ url_for('admin_actions.organize_bookings') }}">Buchungsverwaltung</a>
+        </li>
+        <li>
+          <a href="{{ url_for('admin_actions.organize_user') }}">Nutzerverwaltung</a>
+        </li>
+        <li>
+          <a href="{{ url_for('admin_actions.organize_rooms') }}">Raumverwaltung</a>
+        </li>
+
+    {% else %}
+      <li>
+        <a href="{{ url_for('auth.login') }}"><i class="fas fa-sign-in-alt"></i></a>
+      </li>
+      <li>
+        <a href="{{ url_for('auth.register') }}">Registrieren</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  <section class="content">
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+
+<script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='bootstrap.bundle.js')}}"></script>
+<script src="{{url_for('static', filename='moment-with-locales.js')}}"></script>
+<script src="{{url_for('static', filename='tempusdominus-bootstrap-4.js')}}"></script>
+<script src="{{url_for('static', filename='datetime.js')}}"></script>
+<script src="{{url_for('static', filename='all.js')}}"></script>

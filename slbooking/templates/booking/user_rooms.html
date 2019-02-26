@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Ihre gebuchten Räume!{% endblock %}</h1>
+
+{% endblock %}
+
+{% block content %}
+	<form method="post" action="/user_rooms">
+		{% for room in rooms_booked %}
+	        <input type="checkbox" name="to_be_deleted"
+	               value="{{ room['booking_id'] }}"><h3>{{room['name']}}</h3> 
+	               <h4>Buchungstart:</h4> {{ room['b_checkin'] }} <h4>Buchungsende:</h4>
+	               {{ room['b_checkout'] }}<br/><br/>
+	  	{% endfor %}
+	  	<input type="submit" value="Gewählte Buchungen stornieren">
+  	</form>
+{% endblock %}
+
+<!-- In der Konsole wird die Abfrage der Werte für Value noch als Liste angezeigt, in /user_rooms wird dann nur noch über den ersten Wert iteriert (also bei zweistelligen IDs genau zweimal) und die beiden Ziffern dieser ersten zweistelligen ID werden ausgegeben; nicht, wie gedacht, jede Zahl für sich. -->

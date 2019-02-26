@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Raum buchen - Zeitraum wählen{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+  <form method="post" action="/date">
+    <label for="checkin">Ab wann soll der Raum gebucht werden?</label>
+		<div class="form-group">
+		    <div class='input-group date' id='datetimepicker7' 
+                 data-target-input="nearest">
+		        <input type='text' class="form-control datetimepicker-input"
+                       data-target="#datetimepicker7" name="checkin"
+                       id="checkin" value="{{ request.form['checkin'] }}"
+                       required placeholder="TT.MM.JJJJ HH:MM"/>
+		        <div class="input-group-append" data-target="#datetimepicker7"
+                     data-toggle="datetimepicker">
+                    <div class="input-group-text">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                </div>
+		    </div>
+		</div>
+    <label for="checkin">Bis wann soll der Raum gebucht werden?</label>
+    <div class="form-group">
+            <div class='input-group date' id='datetimepicker8'
+                 data-target-input="nearest">
+                <input type='text' class="form-control datetimepicker-input"
+                       data-target="#datetimepicker8" name="checkout"
+                       id="checkout" value="{{ request.form['checkout'] }}"
+                       placeholder="TT.MM.JJJJ HH:MM" required/>
+                <div class="input-group-append" data-target="#datetimepicker8"
+                     data-toggle="datetimepicker">
+                    <div class="input-group-text">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+
+    <input type="submit" value="Weiter zu: Raum buchen - Bestätigen">
+  </form>
+{% endblock %}

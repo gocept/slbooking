@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Erfolg!</a>{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<h3>{{ room_booked }}</h3> gebucht vom <h4>{{ checkin }} Uhr</h4> bis 
+	<h4>{{ checkout }} Uhr</h4>
+	<a href="{{ url_for('booking.date') }}">weiteren Raum buchen</a>
+{% endblock %}

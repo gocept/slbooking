@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+    {% block header %}{% endblock %}
+    
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}
+
+  <h2>Willkommen {{ g.admin[1]}}!<h2>
+
+  {% endblock %}
+</section>

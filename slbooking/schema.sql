@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS room;
+DROP TABLE IF EXISTS booking;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  mail TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE admin (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  adminname TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE room (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT UNIQUE NOT NULL,
+  description TEXT NOT NULL,
+  picture TEXT
+);
+
+CREATE TABLE booking (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  room_id INTEGER NOT NULL,
+  b_checkin DATETIME NOT NULL,
+  b_checkout DATETIME NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id)
+  FOREIGN KEY (room_id) REFERENCES room (id)
+);
+
+INSERT INTO admin (id, adminname, password) VALUES (1, "test2", 
+  "pbkdf2:sha256:50000$TCI4GzcX$0de171a4f4dac32e3364c7ddc7c14f3e2fa61f2d1757448
+  3f7ffbb431b4acb2f");

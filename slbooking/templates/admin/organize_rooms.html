@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Räume bearbeiten{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+		{% for room in rooms %}
+
+			<h3>{{ room['name'] }}</h3>
+			<p>
+				<span>{{ room['description'] }}</span><br/>
+				<span>{{ room['picture'] }}</span>
+			</p>
+			<a href="{{ url_for('admin_actions.edit_room', 
+				room_id=room['id']) }}"><i class="far fa-edit"></i></a>
+			<a href="{{ url_for('admin_actions.delete_room', 
+				room_id=room['id']) }}"><i class="far fa-trash-alt"></i></a>
+				
+		{% endfor %}
+	
+
+
+	<form method="post">
+		<h2>Neuen Raum anlegen</h2>
+
+	    <label for="name">Raumname</label><br/>
+	    <input name="name" id="name"
+	    	   value="{{ request.form['name'] }}" required><br/>
+	   	<label for="name">Raumbeschreibung</label><br/>
+	    <input name="description" id="description" 
+	    	   value="{{ request.form['description'] }}" required><br/>
+	   	<label for="name">Raumbild</label><br/>
+	    <input name="picture" id="picture"
+	    	   value="{{ request.form['picture'] }}" required><br/><br/>
+	    <input type="submit" value="Raum anlegen">
+
+	</form>
+
+{% endblock %}
